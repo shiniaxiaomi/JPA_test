@@ -1,27 +1,30 @@
-package com.lyj.springboot.mapping.entity;
-
-
+package com.lyj.CRUD.model;
 
 import javax.persistence.*;
 
 /**
  * Created by 陆英杰
- * 2018/9/19 19:55
+ * 2018/9/24 15:55
  */
 
 @Entity
-@Table(name = "db_customer")
-public class Customer {
+public class Dog {
 
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//主键自增
     private Integer id;
 
     private String name;
 
-    @Column //省略默认列名就是属性名
-    private Integer age;
+    @ManyToOne
+    private Owner owner;
 
+    public Dog() {
+    }
+
+    public Dog(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -39,20 +42,19 @@ public class Customer {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Dog{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", age=" + age +
                 '}';
     }
 }
