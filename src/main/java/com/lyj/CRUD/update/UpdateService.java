@@ -19,13 +19,10 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UpdateService {
-
     @Autowired
     EntityManagerFactory entityManagerFactory;
-
     @Autowired
     UpdateDogJpa dogDao;
-
     @Autowired
     UpdateOwnerJpa ownerDao;
 
@@ -52,6 +49,4 @@ public class UpdateService {
 
         entityManager.getTransaction().commit();
     }
-
-
 }

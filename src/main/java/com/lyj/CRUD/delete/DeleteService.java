@@ -18,13 +18,10 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class DeleteService {
-
     @Autowired
     EntityManagerFactory entityManagerFactory;
-
     @Autowired
     DeleteDogJpa dogDao;
-
     @Autowired
     DeleteOwnerJpa ownerDao;
 
@@ -33,7 +30,6 @@ public class DeleteService {
 //        dogDao.deleteById(1);//删除dog
         ownerDao.deleteById(1);//删除owner
     }
-
 
     //使用@Query注解(HQL)删除
     public void delete2(){

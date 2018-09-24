@@ -14,28 +14,22 @@ import javax.persistence.EntityManagerFactory;
  */
 @Service
 public class InsertService {
-
     @Autowired
     EntityManagerFactory entityManagerFactory;
-
     @Autowired
     InsertDogJpa dogDao;
-
     @Autowired
     InsertOwnerJpa ownerDao;
-
     //使用jpa提供的方法插入
     public void insert1(){
         Dog dog=new Dog("111");
         Owner owner=new Owner("aaa");
-
         //设置关系
         owner.getDogs().add(dog);
         dog.setOwner(owner);
 
         ownerDao.save(owner);
     }
-
     //使用entityManager插入数据
     public void insert2(){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -43,15 +37,11 @@ public class InsertService {
 
         Dog dog=new Dog("111");
         Owner owner=new Owner("aaa");
-
         //设置关系
         owner.getDogs().add(dog);
         dog.setOwner(owner);
 
         entityManager.persist(owner);//执行保存操作
-
         entityManager.getTransaction().commit();
     }
-
-
 }

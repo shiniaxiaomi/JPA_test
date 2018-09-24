@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
  */
 public interface DeleteOwnerJpa extends JpaRepository<Owner,Integer>{
 
-
+    //使用@Query注解进行删除操作时,一定要加上@Modifying注解
     @Modifying
     @Query(value = "delete from Owner o where o.id=:id")
     void deleteByOwnerId(@Param("id") Integer id);

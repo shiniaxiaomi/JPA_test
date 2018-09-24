@@ -24,13 +24,10 @@ import java.util.Optional;
 @Service
 @Transactional
 public class SelectService {
-
     @Autowired
     EntityManagerFactory entityManagerFactory;
-
     @Autowired
     SelectDogJpa dogDao;
-
     @Autowired
     SelectOwnerJpa ownerDao;
 
@@ -199,7 +196,6 @@ public class SelectService {
 
         Root<Owner> ownerRoot = query.from(Owner.class);//创建根路径Root
         query.select(ownerRoot);
-
         //criteriaBuilder是用来创建一些查询条件的,他可以将多个查询条件进行拼装
         Predicate id = criteriaBuilder.equal(ownerRoot.get("id"), 1);//添加查询条件1
         Predicate name = criteriaBuilder.like(ownerRoot.get("name"), "%cc%");//添加查询条件2
@@ -209,10 +205,7 @@ public class SelectService {
         query.where(idOrName);//将条件放入where里面(即条件就会跟在where语句后面)
 
         List<Owner> list = entityManager.createQuery(query).getResultList();
-        for(Owner owner:list){
-            System.out.println(owner);
-        }
-
+        for(Owner owner:list){System.out.println(owner);}
         entityManager.getTransaction().commit();
     }
 

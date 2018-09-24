@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
  */
 public interface UpdateOwnerJpa extends JpaRepository<Owner,Integer>{
 
+    //使用@Query注解进行更新操作时,一定要加上@Modifying注解
     @Modifying
     @Query("update Owner o set o.name=:name where o.id=:id")
     public void updateNameById(@Param("id") Integer id,@Param("name") String name);
